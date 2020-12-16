@@ -1,0 +1,88 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="CustomWorkflowDesigner.Activity1" mva:VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="CustomWorkflowDesigner.Activity1_1"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:rsd="clr-namespace:RPA.StandardActivity.DialogBox;assembly=RPA.StandardActivity.DialogBox"
+ xmlns:rsm="clr-namespace:RPA.StandardActivity.Mouse;assembly=RPA.StandardActivity.Mouse"
+ xmlns:rst="clr-namespace:RPA.StandardActivity.TextGrabbing;assembly=RPA.StandardActivity.TextGrabbing"
+ xmlns:rsw="clr-namespace:RPA.StandardActivity.Web;assembly=RPA.StandardActivity.Web"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities.Debugger</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Windows.Markup</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Main FLow" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="Title" />
+      <Variable x:TypeArguments="x:String" Name="Context" />
+    </Sequence.Variables>
+    <rsw:OpenBrowser DelayAfter="{x:Null}" DelayBefore="{x:Null}" Timeout="{x:Null}" WebDriver="{x:Null}" BrowserType="IE" ContinueOnError="False" DisplayName="打开浏览器" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" Url="https://passport.csdn.net/login" />
+    <rsm:Click DelayAfter="{x:Null}" DelayBefore="{x:Null}" Timeout="{x:Null}" ClickType="CLICK_SINGLE" ContinueOnError="False" DisplayName="单击" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" Selector="{}{'wnd': [{'app': 'iexplore','cls': 'IEFrame'},{'cls': 'Internet Explorer_Server','title': ''}],'html': {'ie_ver': '','tagName': 'A','aaname': '注册即代表同意《服务条款》','ID': '','Name': '','url': 'https://passport.csdn.net/login','TabName': 'CSDN-专业IT技术社区-登录','XPath': '//*[@id=\'app\']/DIV/DIV/DIV[1]/DIV[2]/A'}}" SendWindowMessages="False" SimulateClick="False">
+      <rsm:Click.CursorPosition>
+        <rsm:CursorPosition Position="Center">
+          <rsm:CursorPosition.OffsetX>
+            <InArgument x:TypeArguments="x:Int32" />
+          </rsm:CursorPosition.OffsetX>
+          <rsm:CursorPosition.OffsetY>
+            <InArgument x:TypeArguments="x:Int32" />
+          </rsm:CursorPosition.OffsetY>
+        </rsm:CursorPosition>
+      </rsm:Click.CursorPosition>
+    </rsm:Click>
+    <rst:GetFullText DelayAfter="{x:Null}" DelayBefore="{x:Null}" Timeout="{x:Null}" ContinueOnError="False" DisplayName="获取全部文本" sap2010:WorkflowViewState.IdRef="GetFullText_1" Language="中文" Scale="1" Selector="{}{'wnd': [{'app': 'iexplore','cls': 'IEFrame'},{'cls': 'Internet Explorer_Server','title': ''}],'html': {'ie_ver': '','tagName': 'H3','aaname': 'CSDN用户服务条款','ID': '','Name': '','url': 'https://passport.csdn.net/service','TabName': 'CSDN-专业IT技术社区-服务','XPath': '//*[@id=\'app\']/DIV/DIV/DIV/H3'}}" Text="[TItle]" ToGray="False" />
+    <rst:GetFullText DelayAfter="{x:Null}" DelayBefore="{x:Null}" Timeout="{x:Null}" ContinueOnError="False" DisplayName="获取全部文本" sap2010:WorkflowViewState.IdRef="GetFullText_2" Language="中文" Scale="1" Selector="{}{'wnd': [{'app': 'iexplore','cls': 'IEFrame'},{'cls': 'Internet Explorer_Server','title': ''}],'html': {'ie_ver': '','tagName': 'PRE','aaname': '重要提示：\r\nCSDN特别提示您，在注册...','ID': '','Name': '','url': 'https://passport.csdn.net/service','TabName': 'CSDN-专业IT技术社区-服务','XPath': '//*[@id=\'app\']/DIV/DIV/DIV/PRE'}}" Text="[Context]" ToGray="False" />
+    <rsd:MessageBox ChosenButton="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" Timeout="{x:Null}" Buttons="OkCancel" Caption="[Title]" ContinueOnError="False" DisplayName="提示对话框" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="Caption" TopMost="True" />
+    <sads:DebugSymbol.Symbol>d1xDOlxVc2Vyc1xTaW1vbldob1xEZXNrdG9wXFJQQVxUcnlPdXQgNCAtIOiOt+WPlueUqOaIt+adoeasvlzojrflj5ZDU0RO55So5oi35p2h5qy+XE1haW4ueGFtbBEwA0YOAgEBNQU1gAICARM2BUERAgERQgVCngQCAQtDBUOxBAIBBUQFRI0CAgECNdwBNf0BAgEUNvABNqIEAgESQtQBQv0DAgEQQpQEQpsEAgEPQoMEQowEAgENQscBQsoBAgEMQ9QBQ44EAgEKQ6cEQ64EAgEJQ5QEQ58EAgEHQ8cBQ8oBAgEGRIgBRJEBAgED</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="OpenBrowser_1" sap:VirtualizedContainerService.HintSize="274,22" />
+      <sap2010:ViewStateData Id="Click_1" sap:VirtualizedContainerService.HintSize="274,66" />
+      <sap2010:ViewStateData Id="GetFullText_1" sap:VirtualizedContainerService.HintSize="274,66" />
+      <sap2010:ViewStateData Id="GetFullText_2" sap:VirtualizedContainerService.HintSize="274,66" />
+      <sap2010:ViewStateData Id="MessageBox_1" sap:VirtualizedContainerService.HintSize="274,66" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="296,570">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CustomWorkflowDesigner.Activity1_1" sap:VirtualizedContainerService.HintSize="336,650" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>

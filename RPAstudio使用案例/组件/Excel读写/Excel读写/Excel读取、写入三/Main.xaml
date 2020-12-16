@@ -1,0 +1,142 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="CustomWorkflowDesigner.Activity1" mva:VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="CustomWorkflowDesigner.Activity1_1"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:o="clr-namespace:OfficeOpenXml;assembly=EPPlus"
+ xmlns:rse="clr-namespace:RPA.StandardActivity.Excel;assembly=RPA.StandardActivity.Excel"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:sd="clr-namespace:System.Data;assembly=System.Data"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities.Debugger</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="dtInfo" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt" />
+    </Sequence.Variables>
+    <rse:EPExcelApplicationScope Password="{x:Null}" AutoSave="False" CreateNewFile="False" DisplayName="打开Excel" ExcelPath="123.xlsx" sap2010:WorkflowViewState.IdRef="EPExcelApplicationScope_1" Visible="False">
+      <rse:EPExcelApplicationScope.Body>
+        <ActivityAction x:TypeArguments="o:ExcelPackage">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="o:ExcelPackage" Name="ExcelPackageScope" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_1">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="scg:IEnumerable(x:Object)" Name="columns" />
+              <Variable x:TypeArguments="x:Int32" Name="num" />
+            </Sequence.Variables>
+            <rse:EPExcelReadColumn DisplayName="Excel获取单元格" sap2010:WorkflowViewState.IdRef="EPExcelReadColumn_1" Result="[columns]" SheetName="Sheet1" StartingCell="A1" />
+            <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[columns.count().tostring]" />
+            <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Int32">[num]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Int32">[columns.count()]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <rse:EPExcelReadRange AddHeaders="False" DataTable="[dt]" DisplayName="Excel批量导出" sap2010:WorkflowViewState.IdRef="EPExcelReadRange_2" Range="[&quot;A1:B&quot; + num.tostring]" SheetName="Sheet1" />
+          </Sequence>
+        </ActivityAction>
+      </rse:EPExcelApplicationScope.Body>
+    </rse:EPExcelApplicationScope>
+    <rse:EPExcelApplicationScope Password="{x:Null}" AutoSave="False" CreateNewFile="False" DisplayName="打开Excel" ExcelPath="内部帐户余额.xlsx" sap2010:WorkflowViewState.IdRef="EPExcelApplicationScope_2" Visible="False">
+      <rse:EPExcelApplicationScope.Body>
+        <ActivityAction x:TypeArguments="o:ExcelPackage">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="o:ExcelPackage" Name="ExcelPackageScope" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <rse:EPExcelWriteRange AddHeaders="False" DataTable="[dt]" DisplayName="Excel批量导入" sap2010:WorkflowViewState.IdRef="EPExcelWriteRange_2" SheetName="Sheet1" StartingCell="A1" />
+          </Sequence>
+        </ActivityAction>
+      </rse:EPExcelApplicationScope.Body>
+    </rse:EPExcelApplicationScope>
+    <sads:DebugSymbol.Symbol>d3RDOlxVc2Vyc1xTaW1vbldob1xEZXNrdG9wXFJQQVxSUEFzdHVkaW/kvb/nlKjmoYjkvotc57uE5Lu2XEV4Y2Vs6K+75YaZXEV4Y2Vs6K+75YaZXEV4Y2Vs6K+75Y+W44CB5YaZ5YWl5LiJXE1haW4ueGFtbBgyA14OAgEBNwVQIwIBClEFXCMCAQI3fTeHAQIBHT0LTRYCAQtRfVGKAQIBCVcLWRYCAQNCDUKtAQIBGEMNQ2oCARZEDUsWAgESTA1M0wECAQxYDVi9AQIBBEKmAUKqAQIBHEJ6QoUBAgEaQpABQpgBAgEZQ0tDZwIBF0k3SUgCARVGOEY9AgETTEBMRgIBEEyaAUy9AQIBDkzIAUzQAQIBDVi2AVi6AQIBCFhBWEcCAQZYoAFYqAECAQU=</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="EPExcelReadColumn_1" sap:VirtualizedContainerService.HintSize="243,22" />
+      <sap2010:ViewStateData Id="WriteLine_1" sap:VirtualizedContainerService.HintSize="243,61.5" />
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="243,60" />
+      <sap2010:ViewStateData Id="EPExcelReadRange_2" sap:VirtualizedContainerService.HintSize="243,22" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="265,409.5">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="EPExcelApplicationScope_1" sap:VirtualizedContainerService.HintSize="414,510.5">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="EPExcelWriteRange_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="222,146">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="EPExcelApplicationScope_2" sap:VirtualizedContainerService.HintSize="414,247">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="436,921.5">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CustomWorkflowDesigner.Activity1_1" sap:VirtualizedContainerService.HintSize="476,1001.5" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>

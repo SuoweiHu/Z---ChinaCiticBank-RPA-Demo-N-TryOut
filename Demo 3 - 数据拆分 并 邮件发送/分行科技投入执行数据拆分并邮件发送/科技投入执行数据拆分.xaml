@@ -5,7 +5,6 @@
  xmlns:o="clr-namespace:OfficeOpenXml;assembly=EPPlus"
  xmlns:rsd="clr-namespace:RPA.StandardActivity.DataTable;assembly=RPA.StandardActivity.DataTable"
  xmlns:rse="clr-namespace:RPA.StandardActivity.Excel;assembly=RPA.StandardActivity.Excel"
- xmlns:rsm="clr-namespace:RPA.StandardActivity.Mail;assembly=RPA.StandardActivity.Mail"
  xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
  xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
  xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
@@ -62,288 +61,301 @@
       <Variable x:TypeArguments="x:String" Name="mail" />
       <Variable x:TypeArguments="x:String" Name="name" />
     </Sequence.Variables>
-    <rse:EPExcelApplicationScope Password="{x:Null}" AutoSave="False" CreateNewFile="False" ExcelPath="C:\Users\huyu.OA\Desktop\RPA\resources\截至9月26日科技投入执行情况.xlsx" sap2010:WorkflowViewState.IdRef="EPExcelApplicationScope_1" Visible="False">
+    <rse:EPExcelApplicationScope Password="{x:Null}" AutoSave="False" CreateNewFile="False" DisplayName="打开Excel" ExcelPath="C:\Users\huyu.OA\Desktop\RPA\resources\截至9月26日科技投入执行情况.xlsx" sap2010:WorkflowViewState.IdRef="EPExcelApplicationScope_1" Visible="False">
       <rse:EPExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="o:ExcelPackage">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="o:ExcelPackage" Name="ExcelPackageScope" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_3">
-            <Sequence.Variables>
-              <Variable x:TypeArguments="sd:DataRow" Name="newrow" />
-            </Sequence.Variables>
-            <rse:EPExcelReadRange AddHeaders="False" DataTable="[dt]" DisplayName="Excel批量导出" sap2010:WorkflowViewState.IdRef="EPExcelReadRange_1" Range="A3:R40" SheetName="Sheet1" />
-            <rsd:BuildDataTable DataTable="[dtInfo]" DisplayName="新建表格" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;line1&quot; type=&quot;xs:string&quot; default=&quot;&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line2&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line3&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line4&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line5&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line6&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line7&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line8&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line9&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line10&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line11&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line12&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line13&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line14&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line15&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line16&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line17&quot; type=&quot;xs:string&quot; default=&quot;&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;line1 /&gt;&#xA;    &lt;line17 /&gt;&#xA;  &lt;/TableName&gt;&#xA;&lt;/NewDataSet&gt;" />
-            <rsd:ForEachRow DataTable="[dt]" DisplayName="循环行" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
-              <rsd:ForEachRow.Body>
-                <ActivityAction x:TypeArguments="sd:DataRow">
-                  <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
-                  </ActivityAction.Argument>
-                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_7">
-                    <Sequence.Variables>
-                      <Variable x:TypeArguments="x:String" Name="email" />
-                    </Sequence.Variables>
-                    <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_4">
-                      <rsd:ClearDataTable DataTable="[dtInfo]" DisplayName="清空" sap2010:WorkflowViewState.IdRef="ClearDataTable_1" />
-                      <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="sd:DataRow">[newrow]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="sd:DataRow">[dtInfo.NewRow]</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:Object">[newrow("line1")]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:Object">[row(0).tostring]</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign sap2010:WorkflowViewState.IdRef="Assign_22">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[name]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">[row(0).tostring]</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign sap2010:WorkflowViewState.IdRef="Assign_5">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:Object">[newrow("line2")]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:Object">[val(row(1))]</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign sap2010:WorkflowViewState.IdRef="Assign_6">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:Object">[newrow("line3")]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:Object">[val(row(2))]</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign sap2010:WorkflowViewState.IdRef="Assign_7">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:Object">[newrow("line4")]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:Object">[val(row(3))]</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign sap2010:WorkflowViewState.IdRef="Assign_8">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:Object">[newrow("line5")]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:Object">[val(row(4))]</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign sap2010:WorkflowViewState.IdRef="Assign_9">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:Object">[newrow("line6")]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:Object">[val(row(5))]</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign sap2010:WorkflowViewState.IdRef="Assign_10">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:Object">[newrow("line7")]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:Object">[val(row(6))]</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign sap2010:WorkflowViewState.IdRef="Assign_11">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:Object">[newrow("line8")]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:Object">[val(row(7))]</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign sap2010:WorkflowViewState.IdRef="Assign_12">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:Object">[newrow("line9")]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:Object">[val(row(8))]</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign sap2010:WorkflowViewState.IdRef="Assign_13">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:Object">[newrow("line10")]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:Object">[val(row(9))]</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign sap2010:WorkflowViewState.IdRef="Assign_14">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:Object">[newrow("line11")]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:Object">[val(row(10))]</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign sap2010:WorkflowViewState.IdRef="Assign_15">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:Object">[newrow("line12")]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:Object">[val(row(11))]</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign sap2010:WorkflowViewState.IdRef="Assign_16">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:Object">[newrow("line13")]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:Object">[val(row(12))]</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign sap2010:WorkflowViewState.IdRef="Assign_17">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:Object">[newrow("line14")]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:Object">[val(row(13))]</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign sap2010:WorkflowViewState.IdRef="Assign_18">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:Object">[newrow("line15")]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:Object">[val(row(14))]</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign sap2010:WorkflowViewState.IdRef="Assign_19">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:Object">[newrow("line16")]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:Object">[val(row(15))]</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign sap2010:WorkflowViewState.IdRef="Assign_20">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:Object">[newrow("line17")]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:Object">[Format(val(row(16)),"0.0%")]</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign sap2010:WorkflowViewState.IdRef="Assign_21">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[email]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">[row(17).tostring]</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <rsd:AddDataRow ArrayRow="{x:Null}" DataRow="[newrow]" DataTable="[dtInfo]" DisplayName="增加行" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
-                      <rse:EPExcelApplicationScope Password="{x:Null}" AutoSave="False" CreateNewFile="False" ExcelPath="C:\Users\huyu.OA\Desktop\RPA\resources\分行科技投入执行数据.xlsx" sap2010:WorkflowViewState.IdRef="EPExcelApplicationScope_3" Visible="False">
-                        <rse:EPExcelApplicationScope.Body>
-                          <ActivityAction x:TypeArguments="o:ExcelPackage">
-                            <ActivityAction.Argument>
-                              <DelegateInArgument x:TypeArguments="o:ExcelPackage" Name="ExcelPackageScope" />
-                            </ActivityAction.Argument>
-                            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_8">
-                              <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_6">
-                                <rse:EPExcelWriteRange AddHeaders="False" DataTable="[dtInfo]" DisplayName="Excel批量导入" sap2010:WorkflowViewState.IdRef="EPExcelWriteRange_1" SheetName="Sheet1" StartingCell="A3" />
-                                <Delay Duration="00:00:01" sap2010:WorkflowViewState.IdRef="Delay_2" />
-                                <rsm:SendMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" Port="{x:Null}" Body="科技执行投入情况正文" DisplayName="发送邮件" Email="mengxinhong" EnableSSL="True" From="mengxinhong@citicbank.com" sap2010:WorkflowViewState.IdRef="SendMail_1" IsBodyHtml="False" Name="孟新红" Password="邮箱密码" SecureConnection="StartTlsWhenAvailable" Server="mail.citicbank.com" Subject="[name+&quot;科技执行投入情况&quot;]" TimeoutMS="10000" To="[email]">
-                                  <rsm:SendMail.Files>
-                                    <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
-                                      <InArgument x:TypeArguments="x:String">C:\Users\huyu.OA\Desktop\RPA\resources\分行科技投入执行数据.xlsx</InArgument>
-                                    </scg:List>
-                                  </rsm:SendMail.Files>
-                                </rsm:SendMail>
-                                <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[name+&quot;邮件发送成功！&quot;+email]" />
-                                <Delay Duration="00:00:01" sap2010:WorkflowViewState.IdRef="Delay_3" />
+          <Sequence>
+            <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="sd:DataRow" Name="newrow" />
+              </Sequence.Variables>
+              <rse:EPExcelReadRange AddHeaders="False" DataTable="[dt]" DisplayName="Excel批量导出" sap2010:WorkflowViewState.IdRef="EPExcelReadRange_1" Range="A3:R40" SheetName="Sheet1" />
+              <rsd:BuildDataTable DataTable="[dtInfo]" DisplayName="新建表格" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;line1&quot; type=&quot;xs:string&quot; default=&quot;&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line2&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line3&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line4&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line5&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line6&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line7&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line8&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line9&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line10&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line11&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line12&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line13&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line14&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line15&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line16&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;line17&quot; type=&quot;xs:string&quot; default=&quot;&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;line1 /&gt;&#xA;    &lt;line17 /&gt;&#xA;  &lt;/TableName&gt;&#xA;&lt;/NewDataSet&gt;" />
+              <rsd:ForEachRow DataTable="[dt]" DisplayName="循环行" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                <rsd:ForEachRow.Body>
+                  <ActivityAction x:TypeArguments="sd:DataRow">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+                    </ActivityAction.Argument>
+                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_7">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="x:String" Name="email" />
+                      </Sequence.Variables>
+                      <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                        <rsd:ClearDataTable DataTable="[dtInfo]" DisplayName="清空" sap2010:WorkflowViewState.IdRef="ClearDataTable_1" />
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="sd:DataRow">[newrow]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="sd:DataRow">[dtInfo.NewRow]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[newrow("line1")]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Object">[row(0).tostring]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_22">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[name]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[row(0).tostring]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_5">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[newrow("line2")]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Object">[val(row(1))]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_6">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[newrow("line3")]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Object">[val(row(2))]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_7">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[newrow("line4")]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Object">[val(row(3))]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_8">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[newrow("line5")]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Object">[val(row(4))]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_9">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[newrow("line6")]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Object">[val(row(5))]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_10">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[newrow("line7")]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Object">[val(row(6))]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_11">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[newrow("line8")]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Object">[val(row(7))]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_12">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[newrow("line9")]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Object">[val(row(8))]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_13">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[newrow("line10")]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Object">[val(row(9))]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_14">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[newrow("line11")]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Object">[val(row(10))]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_15">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[newrow("line12")]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Object">[val(row(11))]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_16">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[newrow("line13")]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Object">[val(row(12))]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_17">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[newrow("line14")]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Object">[val(row(13))]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_18">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[newrow("line15")]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Object">[val(row(14))]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_19">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[newrow("line16")]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Object">[val(row(15))]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_20">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[newrow("line17")]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Object">[Format(val(row(16)),"0.0%")]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_21">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[email]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[row(17).tostring]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <rsd:AddDataRow ArrayRow="{x:Null}" DataRow="[newrow]" DataTable="[dtInfo]" DisplayName="增加行" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+                        <rse:EPExcelApplicationScope Password="{x:Null}" AutoSave="False" CreateNewFile="False" DisplayName="打开Excel" ExcelPath="C:\Users\huyu.OA\Desktop\RPA\resources\分行科技投入执行数据.xlsx" sap2010:WorkflowViewState.IdRef="EPExcelApplicationScope_3" Visible="False">
+                          <rse:EPExcelApplicationScope.Body>
+                            <ActivityAction x:TypeArguments="o:ExcelPackage">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="o:ExcelPackage" Name="ExcelPackageScope" />
+                              </ActivityAction.Argument>
+                              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_8">
+                                <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                                  <rse:EPExcelWriteRange AddHeaders="False" DataTable="[dtInfo]" DisplayName="Excel批量导入" sap2010:WorkflowViewState.IdRef="EPExcelWriteRange_1" SheetName="Sheet1" StartingCell="A3" />
+                                  <Delay Duration="00:00:01" sap2010:WorkflowViewState.IdRef="Delay_2" />
+                                  <rsm:SendMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" Port="{x:Null}" Body="科技执行投入情况正文" DisplayName="发送邮件" Email="mengxinhong" EnableSSL="True" From="mengxinhong@citicbank.com" sap2010:WorkflowViewState.IdRef="SendMail_1" IsBodyHtml="False" Name="孟新红" Password="邮箱密码" SecureConnection="StartTlsWhenAvailable" Server="mail.citicbank.com" Subject="[name+&quot;科技执行投入情况&quot;]" TimeoutMS="10000" To="[email]" xmlns:rsm="clr-namespace:RPA.StandardActivity.Mail;assembly=RPA.StandardActivity.Mail" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger">
+                                    <rsm:SendMail.Files>
+                                      <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                                        <InArgument x:TypeArguments="x:String">C:\Users\huyu.OA\Desktop\RPA\resources\分行科技投入执行数据.xlsx</InArgument>
+                                      </scg:List>
+                                    </rsm:SendMail.Files>
+                                  </rsm:SendMail>
+                                  <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[name+&quot;邮件发送成功！&quot;+email]" />
+                                  <Delay Duration="00:00:01" sap2010:WorkflowViewState.IdRef="Delay_3" />
+                                </Sequence>
                               </Sequence>
-                            </Sequence>
-                          </ActivityAction>
-                        </rse:EPExcelApplicationScope.Body>
-                      </rse:EPExcelApplicationScope>
+                            </ActivityAction>
+                          </rse:EPExcelApplicationScope.Body>
+                        </rse:EPExcelApplicationScope>
+                      </Sequence>
                     </Sequence>
-                  </Sequence>
-                </ActivityAction>
-              </rsd:ForEachRow.Body>
-            </rsd:ForEachRow>
+                  </ActivityAction>
+                </rsd:ForEachRow.Body>
+              </rsd:ForEachRow>
+            </Sequence>
+            <sap2010:WorkflowViewState.IdRef>Sequence_9</sap2010:WorkflowViewState.IdRef>
           </Sequence>
         </ActivityAction>
       </rse:EPExcelApplicationScope.Body>
     </rse:EPExcelApplicationScope>
-    <sads:DebugSymbol.Symbol>d0BDOlxVc2Vyc1xodXl1Lk9BXERlc2t0b3BcUlBBXOenkeaKgOaKleWFpeaJp+ihjOaVsOaNruaLhuWIhi54YW1saDoDnAIOAgEBQQWaAiMCAQJBZ0GkAQIBdkcLlwIWAgEDSw1LuAECAXFMDUyMGAIBbk0NlgIeAgEES0BLRgIBdEuaAUuiAQIBc0utAUu1AQIBckwrTDUCAW9NJ00tAgFsUxOTAh4CAQVXFZICIAIBBlgXWIYBAgFpWRdgIAIBZWEXaCACAWJpF3AgAgFecRd4IAIBW3kXgAEgAgFYgQEXiAEgAgFViQEXkAEgAgFSkQEXmAEgAgFPmQEXoAEgAgFMoQEXqAEgAgFJqQEXsAEgAgFGsQEXuAEgAgFDuQEXwAEgAgFAwQEXyAEgAgE9yQEX0AEgAgE60QEX2AEgAgE32QEX4AEgAgE04QEX6AEgAgEx6QEX8AEgAgEu8QEX+AEgAgEq+QEX+QGmAQIBJfoBF5ECNQIBB1g1WD8CAWpeRF5TAgFoW0VbTQIBZmZCZlMCAWRjQ2NUAgFjbkJuUwIBYWtDa0kCAV92QnZPAgFdc0NzVAIBXH5Cfk8CAVp7Q3tUAgFZhgFChgFPAgFXgwFDgwFUAgFWjgFCjgFPAgFUiwFDiwFUAgFTlgFClgFPAgFRkwFDkwFUAgFQngFCngFPAgFOmwFDmwFUAgFNpgFCpgFPAgFLowFDowFUAgFKrgFCrgFPAgFIqwFDqwFUAgFHtgFCtgFPAgFFswFDswFVAgFEvgFCvgFQAgFCuwFDuwFVAgFBxgFCxgFQAgE/wwFDwwFVAgE+zgFCzgFQAgE8ywFDywFVAgE71gFC1gFQAgE50wFD0wFVAgE43gFC3gFQAgE22wFD2wFVAgE15gFC5gFQAgEz4wFD4wFVAgEy7gFC7gFfAgEw6wFD6wFVAgEv9gFC9gFUAgEt8wFD8wFKAgEr+QFD+QFNAgEo+QFY+QFiAgEm+gF5+gGxAQIBJIACHY4CKAIBCIECH40CKgIBCYICIYIC1QECAR+DAiGDAmgCAR2EAiGKAjACARCLAiGLAoQBAgEMjAIhjAJoAgEKggLOAYIC0gECASOCAlWCAl8CASGCArgBggLAAQIBIIMCMYMCOwIBHoQCuQOEAsIDAgEbhwJOhwKEAQIBGoQCrgOEArUDAgEZhAJ4hAKEAQIBGIQChgOEAqMDAgEWhALCAYQC3QECARWEAp4BhAKrAQIBFIQC6QKEAv0CAgEThAKyAoQCuAICARKEAqMChAKoAgIBEYsCX4sCgQECAQ2MAjGMAjsCAQs=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d5wBQzpcVXNlcnNcU2ltb25XaG9cRGVza3RvcFxSUEFcRGVtbyAzIC0g5pWw5o2u5ouG5YiGIOW5tiDpgq7ku7blj5HpgIFc5YiG6KGM56eR5oqA5oqV5YWl5omn6KGM5pWw5o2u5ouG5YiG5bm26YKu5Lu25Y+R6YCBXOenkeaKgOaKleWFpeaJp+ihjOaVsOaNruaLhuWIhi54YW1sXjkDngIOAgEBQAWcAiMCAQJAfUC6AQIBa0YLmQIWAgEDRw2XAhgCAQRLD0u6AQIBZkwPTI4YAgFjTQ+WAiACAQVLQktIAgFpS5wBS6QBAgFoS68BS7cBAgFnTC1MNwIBZE0pTS8CAWFTFZMCIAIBBlcXkgIiAgEHWBlYiAECAV5ZGWAiAgFaYRloIgIBV2kZcCICAVNxGXgiAgFQeRmAASICAU2BARmIASICAUqJARmQASICAUeRARmYASICAUSZARmgASICAUGhARmoASICAT6pARmwASICATuxARm4ASICATi5ARnAASICATXBARnIASICATLJARnQASICAS/RARnYASICASzZARngASICASnhARnoASICASbpARnwASICASPxARn4ASICAR/5ARn5AagBAgEa+gEZkQI3AgEIWDdYQQIBX15GXlUCAV1bR1tPAgFbZkRmVQIBWWNFY1YCAVhuRG5VAgFWa0VrSwIBVHZEdlECAVJzRXNWAgFRfkR+UQIBT3tFe1YCAU6GAUSGAVECAUyDAUWDAVYCAUuOAUSOAVECAUmLAUWLAVYCAUiWAUSWAVECAUaTAUWTAVYCAUWeAUSeAVECAUObAUWbAVYCAUKmAUSmAVECAUCjAUWjAVYCAT+uAUSuAVECAT2rAUWrAVYCATy2AUS2AVECATqzAUWzAVcCATm+AUS+AVICATe7AUW7AVcCATbGAUTGAVICATTDAUXDAVcCATPOAUTOAVICATHLAUXLAVcCATDWAUTWAVICAS7TAUXTAVcCAS3eAUTeAVICASvbAUXbAVcCASrmAUTmAVICASjjAUXjAVcCASfuAUTuAWECASXrAUXrAVcCAST2AUT2AVYCASLzAUXzAUwCASD5AUX5AU8CAR35AVr5AWQCARv6AZEB+gHJAQIBGYACH44CKgIBCYECIY0CLAIBCoICI4IC1wECARSDAiODAmoCARKLAiOLAoYBAgENjAIjjAJqAgELggLQAYIC1AECARiCAleCAmECARaCAroBggLCAQIBFYMCM4MCPQIBE4sCYYsCgwECAQ6MAjOMAj0CAQw=</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
       <sap2010:ViewStateData Id="EPExcelReadRange_1" sap:VirtualizedContainerService.HintSize="284,22" />
       <sap2010:ViewStateData Id="BuildDataTable_1" sap:VirtualizedContainerService.HintSize="284,86" />
-      <sap2010:ViewStateData Id="ClearDataTable_1" sap:VirtualizedContainerService.HintSize="458,22" />
-      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="458,61" />
-      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="458,61" />
-      <sap2010:ViewStateData Id="Assign_22" sap:VirtualizedContainerService.HintSize="458,61" />
-      <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="458,61" />
-      <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="458,61" />
-      <sap2010:ViewStateData Id="Assign_7" sap:VirtualizedContainerService.HintSize="458,61" />
-      <sap2010:ViewStateData Id="Assign_8" sap:VirtualizedContainerService.HintSize="458,61" />
-      <sap2010:ViewStateData Id="Assign_9" sap:VirtualizedContainerService.HintSize="458,61" />
-      <sap2010:ViewStateData Id="Assign_10" sap:VirtualizedContainerService.HintSize="458,61" />
-      <sap2010:ViewStateData Id="Assign_11" sap:VirtualizedContainerService.HintSize="458,61" />
-      <sap2010:ViewStateData Id="Assign_12" sap:VirtualizedContainerService.HintSize="458,61" />
-      <sap2010:ViewStateData Id="Assign_13" sap:VirtualizedContainerService.HintSize="458,61" />
-      <sap2010:ViewStateData Id="Assign_14" sap:VirtualizedContainerService.HintSize="458,61" />
-      <sap2010:ViewStateData Id="Assign_15" sap:VirtualizedContainerService.HintSize="458,61" />
-      <sap2010:ViewStateData Id="Assign_16" sap:VirtualizedContainerService.HintSize="458,61" />
-      <sap2010:ViewStateData Id="Assign_17" sap:VirtualizedContainerService.HintSize="458,61" />
-      <sap2010:ViewStateData Id="Assign_18" sap:VirtualizedContainerService.HintSize="458,61" />
-      <sap2010:ViewStateData Id="Assign_19" sap:VirtualizedContainerService.HintSize="458,61" />
-      <sap2010:ViewStateData Id="Assign_20" sap:VirtualizedContainerService.HintSize="458,61" />
-      <sap2010:ViewStateData Id="Assign_21" sap:VirtualizedContainerService.HintSize="458,61" />
-      <sap2010:ViewStateData Id="AddDataRow_1" sap:VirtualizedContainerService.HintSize="458,22" />
-      <sap2010:ViewStateData Id="EPExcelWriteRange_1" sap:VirtualizedContainerService.HintSize="314,22" />
-      <sap2010:ViewStateData Id="Delay_2" sap:VirtualizedContainerService.HintSize="314,22" />
+      <sap2010:ViewStateData Id="ClearDataTable_1" sap:VirtualizedContainerService.HintSize="456,22" />
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="456,60" />
+      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="456,60" />
+      <sap2010:ViewStateData Id="Assign_22" sap:VirtualizedContainerService.HintSize="456,60" />
+      <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="456,60" />
+      <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="456,60" />
+      <sap2010:ViewStateData Id="Assign_7" sap:VirtualizedContainerService.HintSize="456,60" />
+      <sap2010:ViewStateData Id="Assign_8" sap:VirtualizedContainerService.HintSize="456,60" />
+      <sap2010:ViewStateData Id="Assign_9" sap:VirtualizedContainerService.HintSize="456,60" />
+      <sap2010:ViewStateData Id="Assign_10" sap:VirtualizedContainerService.HintSize="456,60" />
+      <sap2010:ViewStateData Id="Assign_11" sap:VirtualizedContainerService.HintSize="456,60" />
+      <sap2010:ViewStateData Id="Assign_12" sap:VirtualizedContainerService.HintSize="456,60" />
+      <sap2010:ViewStateData Id="Assign_13" sap:VirtualizedContainerService.HintSize="456,60" />
+      <sap2010:ViewStateData Id="Assign_14" sap:VirtualizedContainerService.HintSize="456,60" />
+      <sap2010:ViewStateData Id="Assign_15" sap:VirtualizedContainerService.HintSize="456,60" />
+      <sap2010:ViewStateData Id="Assign_16" sap:VirtualizedContainerService.HintSize="456,60" />
+      <sap2010:ViewStateData Id="Assign_17" sap:VirtualizedContainerService.HintSize="456,60" />
+      <sap2010:ViewStateData Id="Assign_18" sap:VirtualizedContainerService.HintSize="456,60" />
+      <sap2010:ViewStateData Id="Assign_19" sap:VirtualizedContainerService.HintSize="456,60" />
+      <sap2010:ViewStateData Id="Assign_20" sap:VirtualizedContainerService.HintSize="456,60" />
+      <sap2010:ViewStateData Id="Assign_21" sap:VirtualizedContainerService.HintSize="456,60" />
+      <sap2010:ViewStateData Id="AddDataRow_1" sap:VirtualizedContainerService.HintSize="456,22" />
+      <sap2010:ViewStateData Id="EPExcelWriteRange_1" sap:VirtualizedContainerService.HintSize="248.5,22" />
+      <sap2010:ViewStateData Id="Delay_2" sap:VirtualizedContainerService.HintSize="248.5,22" />
       <sap2010:ViewStateData Id="SendMail_1" sap:VirtualizedContainerService.HintSize="314,151" />
-      <sap2010:ViewStateData Id="WriteLine_3" sap:VirtualizedContainerService.HintSize="314,63" />
-      <sap2010:ViewStateData Id="Delay_3" sap:VirtualizedContainerService.HintSize="314,22" />
-      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="336,564">
+      <sap2010:ViewStateData Id="ErrorActivity_1" sap:VirtualizedContainerService.HintSize="248.5,55.5" />
+      <sap2010:ViewStateData Id="WriteLine_3" sap:VirtualizedContainerService.HintSize="248.5,61.5" />
+      <sap2010:ViewStateData Id="Delay_3" sap:VirtualizedContainerService.HintSize="248.5,22" />
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="270.5,467">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_8" sap:VirtualizedContainerService.HintSize="358,688">
+      <sap2010:ViewStateData Id="Sequence_8" sap:VirtualizedContainerService.HintSize="292.5,591">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="EPExcelApplicationScope_3" sap:VirtualizedContainerService.HintSize="458,789" />
-      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="480,3057">
+      <sap2010:ViewStateData Id="EPExcelApplicationScope_3" sap:VirtualizedContainerService.HintSize="456,732">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsPinned">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="478,2980">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="502,3181">
+      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="500,3104">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEachRow_1" sap:VirtualizedContainerService.HintSize="528,3315">
+      <sap2010:ViewStateData Id="ForEachRow_1" sap:VirtualizedContainerService.HintSize="526,3235">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -351,22 +363,36 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="306,365">
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="200,51.5">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="EPExcelApplicationScope_1" sap:VirtualizedContainerService.HintSize="503,466" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="525,590">
+      <sap2010:ViewStateData Id="Sequence_9" sap:VirtualizedContainerService.HintSize="222,175.5">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CustomWorkflowDesigner.Activity1_1" sap:VirtualizedContainerService.HintSize="565,670" />
+      <sap2010:ViewStateData Id="EPExcelApplicationScope_1" sap:VirtualizedContainerService.HintSize="501,152.5" />
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="523,588.5">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CustomWorkflowDesigner.Activity1_1" sap:VirtualizedContainerService.HintSize="563,668.5">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="ShouldCollapseAll">True</x:Boolean>
+            <x:Boolean x:Key="ShouldExpandAll">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
