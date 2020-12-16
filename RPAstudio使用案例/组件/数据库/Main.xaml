@@ -1,0 +1,191 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="CustomWorkflowDesigner.Activity1" mva:VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="CustomWorkflowDesigner.Activity1_1"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:o="clr-namespace:OfficeOpenXml;assembly=EPPlus"
+ xmlns:rsd="clr-namespace:RPA.StandardActivity.Database;assembly=RPA.StandardActivity.Database"
+ xmlns:rsd1="clr-namespace:RPA.StandardActivity.DataTable;assembly=RPA.StandardActivity.DataTable"
+ xmlns:rse="clr-namespace:RPA.StandardActivity.Excel;assembly=RPA.StandardActivity.Excel"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:sd="clr-namespace:System.Data;assembly=System.Data"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities.Debugger</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>RPA.BaseCore.Common</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_4">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="rsd:DatabaseConnection" Name="mydatabase" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dtNEW" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt" />
+      <Variable x:TypeArguments="sd:DataRow" Name="newrow" />
+    </Sequence.Variables>
+    <rsd:DatabaseConnect ConnectionString="8CC592A75F2F0A0846AC13A79EBED5A6E72665C438A2D9B8C8A6EEAE7EC863D29388D98FE0F25E79179FE3730C0D1BBA0D31BD91A58E4AA50BD1E310F9A111040694E7D46534B18EBAD66EC76499C1F5" DatabaseConnection="[mydatabase]" DisplayName="打开连接" sap2010:WorkflowViewState.IdRef="DatabaseConnect_1" ProviderName="MySql.Data.MySqlClient" />
+    <rse:EPExcelApplicationScope Password="{x:Null}" AutoSave="False" CreateNewFile="False" DisplayName="打开Excel" ExcelPath="C:\Users\86183\Desktop\数据库\resources\23.xlsx" sap2010:WorkflowViewState.IdRef="EPExcelApplicationScope_1" Visible="False">
+      <rse:EPExcelApplicationScope.Body>
+        <ActivityAction x:TypeArguments="o:ExcelPackage">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="o:ExcelPackage" Name="ExcelPackageScope" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <rse:EPExcelReadRange AddHeaders="False" DataTable="[dt]" DisplayName="Excel批量导出" sap2010:WorkflowViewState.IdRef="EPExcelReadRange_1" Range="A1:B12" SheetName="Sheet1" />
+            <rsd1:BuildDataTable DataTable="[dtNEW]" DisplayName="新建表格" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;序号&quot; type=&quot;xs:string&quot; default=&quot;&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;内容&quot; type=&quot;xs:string&quot; default=&quot;&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;序号 /&gt;&#xA;    &lt;内容 /&gt;&#xA;  &lt;/TableName&gt;&#xA;&lt;/NewDataSet&gt;" />
+            <rsd1:RemoveDataRow Row="{x:Null}" DataTable="[dtNEW]" DisplayName="移除行" sap2010:WorkflowViewState.IdRef="RemoveDataRow_1" RowIndex="0" />
+            <rsd1:ForEachRow DataTable="[dt]" DisplayName="循环行" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+              <rsd1:ForEachRow.Body>
+                <ActivityAction x:TypeArguments="sd:DataRow">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_1">
+                    <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="sd:DataRow">[newrow]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="sd:DataRow">[dtNEW.newrow]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Object">[newrow("序号")]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Object">[row(0).tostring]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign sap2010:WorkflowViewState.IdRef="Assign_3">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Object">[newrow("内容")]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Object">[row(1).tostring]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <rsd1:AddDataRow ArrayRow="{x:Null}" DataRow="[newrow]" DataTable="[dtNEW]" DisplayName="增加行" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+                  </Sequence>
+                </ActivityAction>
+              </rsd1:ForEachRow.Body>
+            </rsd1:ForEachRow>
+          </Sequence>
+        </ActivityAction>
+      </rse:EPExcelApplicationScope.Body>
+    </rse:EPExcelApplicationScope>
+    <If Condition="[dtNew.rows.count &gt; 0]" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:Int32" Name="da" />
+          </Sequence.Variables>
+          <rsd1:RemoveDataRow Row="{x:Null}" DataTable="[dtNEW]" DisplayName="移除行" sap2010:WorkflowViewState.IdRef="RemoveDataRow_4" RowIndex="0" />
+          <rsd:InsertDataTable AffectedRecords="[da]" ContinueOnError="False" DataBaseType="Default" DataTable="[dtNew]" DisplayName="批量入库" ExistingDbConnection="[mydatabase]" sap2010:WorkflowViewState.IdRef="InsertDataTable_1" TableName="wangj" />
+          <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;批量入库插入记录数&quot;+da.tostring]" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="没有记录数插入" />
+      </If.Else>
+    </If>
+    <rsd:DatabaseDisconnect DatabaseConnection="[mydatabase]" DisplayName="关闭连接" sap2010:WorkflowViewState.IdRef="DatabaseDisconnect_1" />
+    <sads:DebugSymbol.Symbol>dypDOlxVc2Vyc1w4NjE4M1xEZXNrdG9wXOaVsOaNruW6k1xNYWluLnhhbWwwNAN/DgIBATsFO98CAgE7PAVtIwIBGW4FfAoCAQV9BX2LAQIBAjvEAjvcAgIBPjvhATvvAQIBPDx9PKsBAgE6QgtqFgIBGm4Tbi4CAQZwCXcUAgEJegl6UwIBB30wfT4CAQNDDUO4AQIBNUQNROcKAgEyRQ1FlwECAS5GDWkfAgEbdAt0lQECARV1C3X5AQIBDXYLdnECAQp6R3pQAgEIQ0BDRgIBOEOaAUOiAQIBN0OtAUO1AQIBNkQsRDUCATNFkQFFlAECATFFOkVDAgEvRihGLgIBLEwTZh4CARx0jwF0kgECARh0OHRBAgEWdaIBdbABAgETdXB1eQIBEXXvAXX2AQIBEHUwdTYCAQ52SXZuAgELTRVUHgIBKFUVXB4CASVdFWQeAgEiZRVlpAECAR1SQlJQAgErT0NPSwIBKVpAWlECASdXQVdPAgEmYkBiUQIBJF9BX08CASNlQmVMAgEgZVdlYAIBHg==</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="DatabaseConnect_1" sap:VirtualizedContainerService.HintSize="473,22" />
+      <sap2010:ViewStateData Id="EPExcelReadRange_1" sap:VirtualizedContainerService.HintSize="291,22" />
+      <sap2010:ViewStateData Id="BuildDataTable_1" sap:VirtualizedContainerService.HintSize="291,86" />
+      <sap2010:ViewStateData Id="RemoveDataRow_1" sap:VirtualizedContainerService.HintSize="291,22" />
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="243,61" />
+      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="243,61" />
+      <sap2010:ViewStateData Id="Assign_3" sap:VirtualizedContainerService.HintSize="243,61" />
+      <sap2010:ViewStateData Id="AddDataRow_1" sap:VirtualizedContainerService.HintSize="243,22" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="265,449">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEachRow_1" sap:VirtualizedContainerService.HintSize="291,583" />
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="313,957">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="EPExcelApplicationScope_1" sap:VirtualizedContainerService.HintSize="473,1058">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="RemoveDataRow_4" sap:VirtualizedContainerService.HintSize="213,22" />
+      <sap2010:ViewStateData Id="InsertDataTable_1" sap:VirtualizedContainerService.HintSize="213,22" />
+      <sap2010:ViewStateData Id="WriteLine_1" sap:VirtualizedContainerService.HintSize="213,63" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="235,311">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WriteLine_2" sap:VirtualizedContainerService.HintSize="213,63" />
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="473,464">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="DatabaseDisconnect_1" sap:VirtualizedContainerService.HintSize="473,22" />
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="495,1810">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CustomWorkflowDesigner.Activity1_1" sap:VirtualizedContainerService.HintSize="535,2010" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>
